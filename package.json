@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "An action for automating the versioning of other GitHub Actions.",
   "scripts": {
+    "build": "tsc src/index.ts --outDir dist",
+    "init": "tsc --init",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ross Sullivan",
