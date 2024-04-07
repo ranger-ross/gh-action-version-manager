@@ -4,7 +4,7 @@
   "description": "An action for automating the versioning of other GitHub Actions.",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "tsc --outDir dist && ncc build dist/index.js -o dist",
+    "build": "ncc build src/index.ts -o dist",
     "test": "vitest"
   },
   "author": "Ross Sullivan",

@@ -1,86 +1,6 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 9283:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core = __importStar(__nccwpck_require__(2186));
-const github = __importStar(__nccwpck_require__(5438));
-const utils_1 = __nccwpck_require__(4729);
-async function main() {
-    try {
-        const version = core.getInput('version');
-        const token = core.getInput('token');
-        const majorVersion = (0, utils_1.parseMajorVersion)(version);
-        const octokit = github.getOctokit(token);
-    }
-    catch (error) {
-        core.setFailed(error.message);
-    }
-}
-main();
-
-
-/***/ }),
-
-/***/ 4729:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parseMajorVersion = void 0;
-function parseMajorVersion(version) {
-    let normalizedVersion = version;
-    if (version[0] === 'v') {
-        normalizedVersion = version.substring(1);
-    }
-    let majorVersion = '';
-    for (const char of normalizedVersion.split('')) {
-        if (char === '.') {
-            break;
-        }
-        if (isNaN(parseInt(char))) {
-            throw Error("Could not parse major version from tag name");
-        }
-        majorVersion += char;
-    }
-    if (!majorVersion || majorVersion.length === 0) {
-        throw Error("Could not parse major version from tag name");
-    }
-    return parseInt(majorVersion);
-}
-exports.parseMajorVersion = parseMajorVersion;
-
-
-/***/ }),
-
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
@@ -29267,6 +29187,86 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 6144:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core = __importStar(__nccwpck_require__(2186));
+const github = __importStar(__nccwpck_require__(5438));
+const utils_1 = __nccwpck_require__(1314);
+async function main() {
+    try {
+        const version = core.getInput('version');
+        const token = core.getInput('token');
+        const majorVersion = (0, utils_1.parseMajorVersion)(version);
+        const octokit = github.getOctokit(token);
+    }
+    catch (error) {
+        core.setFailed(error.message);
+    }
+}
+main();
+
+
+/***/ }),
+
+/***/ 1314:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.parseMajorVersion = void 0;
+function parseMajorVersion(version) {
+    let normalizedVersion = version;
+    if (version[0] === 'v') {
+        normalizedVersion = version.substring(1);
+    }
+    let majorVersion = '';
+    for (const char of normalizedVersion.split('')) {
+        if (char === '.') {
+            break;
+        }
+        if (isNaN(parseInt(char))) {
+            throw Error("Could not parse major version from tag name");
+        }
+        majorVersion += char;
+    }
+    if (!majorVersion || majorVersion.length === 0) {
+        throw Error("Could not parse major version from tag name");
+    }
+    return parseInt(majorVersion);
+}
+exports.parseMajorVersion = parseMajorVersion;
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -31158,7 +31158,7 @@ module.exports = parseParams
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(9283);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(6144);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
