@@ -1,0 +1,13 @@
+{
+  "name": "gh-action-version-manager",
+  "version": "1.0.0",
+  "description": "An action for automating the versioning of other GitHub Actions.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ross Sullivan",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.4.4"
+  }
+}
