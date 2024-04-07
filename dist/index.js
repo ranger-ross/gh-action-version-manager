@@ -29217,14 +29217,23 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
-const github = __importStar(__nccwpck_require__(5438));
+const github_1 = __nccwpck_require__(5438);
 const utils_1 = __nccwpck_require__(1314);
 async function main() {
     try {
         const version = core.getInput('version');
         const token = core.getInput('token');
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
-        const octokit = github.getOctokit(token);
+        const octokit = (0, github_1.getOctokit)(token);
+        // @ts-ignore TODO: FIX?
+        const res = await octokit.git.createTag({
+            ...github_1.context.repo,
+            tag: `v${majorVersion}`,
+            message: "Hello",
+            object: version,
+            type: 'commit',
+        });
+        console.log(res);
     }
     catch (error) {
         core.setFailed(error.message);
