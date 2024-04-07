@@ -4,13 +4,14 @@
   "description": "An action for automating the versioning of other GitHub Actions.",
   "scripts": {
     "prebuild": "rm -rf dist",
-    "build": "tsc src/index.ts --outDir dist && ncc build dist/index.js -o dist",
+    "build": "tsc --outDir dist && ncc build dist/index.js -o dist",
     "test": "vitest"
   },
   "author": "Ross Sullivan",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.1"
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^6.0.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.38.1",

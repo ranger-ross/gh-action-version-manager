@@ -2,13 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseMajorVersion = void 0;
 function parseMajorVersion(version) {
-    var normalizedVersion = version;
+    let normalizedVersion = version;
     if (version[0] === 'v') {
         normalizedVersion = version.substring(1);
     }
-    var majorVersion = '';
-    for (var _i = 0, _a = normalizedVersion.split(''); _i < _a.length; _i++) {
-        var char = _a[_i];
+    let majorVersion = '';
+    for (const char of normalizedVersion.split('')) {
         if (char === '.') {
             break;
         }

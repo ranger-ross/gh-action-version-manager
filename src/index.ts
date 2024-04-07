@@ -1,14 +1,17 @@
 import * as core from '@actions/core';
+import * as github from '@actions/github';
 import { parseMajorVersion } from './utils';
 
-function main() {
-    const version = core.getInput('version');
+async function main() {
+    try {
+        const version = core.getInput('version');
+        const token = core.getInput('token');
+        const majorVersion = parseMajorVersion(version);
+        const octokit = github.getOctokit(token);
 
-    console.log('FOUND ' + version)
-
-    const majorVersion = parseMajorVersion(version);
-
-    console.log('FOUND MAJOR => ' + majorVersion)
+    } catch (error: any) {
+        core.setFailed(error.message);
+    }
 }
 
 
