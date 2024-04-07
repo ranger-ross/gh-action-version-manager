@@ -29225,18 +29225,19 @@ async function main() {
         const token = core.getInput('token');
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
         const octokit = (0, github_1.getOctokit)(token);
-        console.log(octokit);
-        // const com = await octokit.rest.git.getTag({
-        //     ...context.repo,
-        // })
         const res = await octokit.rest.git.createTag({
             ...github_1.context.repo,
+            ref: `refs/tags/v${majorVersion}`,
             tag: `v${majorVersion}`,
             message: "Hello",
             object: github_1.context.sha,
             type: 'commit',
         });
-        console.log(res);
+        await octokit.rest.git.createRef({
+            ...github_1.context.repo,
+            ref: `refs/tags/v${majorVersion}`,
+            sha: res.data.sha
+        });
     }
     catch (error) {
         core.setFailed(error.message);
