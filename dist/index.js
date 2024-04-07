@@ -29226,11 +29226,14 @@ async function main() {
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
         const octokit = (0, github_1.getOctokit)(token);
         console.log(octokit);
+        // const com = await octokit.rest.git.getTag({
+        //     ...context.repo,
+        // })
         const res = await octokit.rest.git.createTag({
             ...github_1.context.repo,
             tag: `v${majorVersion}`,
             message: "Hello",
-            object: version,
+            object: github_1.context.sha,
             type: 'commit',
         });
         console.log(res);
