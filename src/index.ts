@@ -11,11 +11,16 @@ async function main() {
 
         console.log(octokit);
 
+        // const com = await octokit.rest.git.getTag({
+        //     ...context.repo,
+
+        // })
+
         const res = await octokit.rest.git.createTag({
             ...context.repo,
             tag: `v${majorVersion}`,
             message: "Hello",
-            object: version,
+            object: context.sha,
             type: 'commit',
           });
 
