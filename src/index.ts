@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 
 function main() {
-    console.log('FOUND')
+    console.log('FOUND 1')
 }
 
 function parseMajorVersion(version: string): number {
