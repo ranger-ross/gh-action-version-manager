@@ -9,6 +9,8 @@ async function main() {
         const majorVersion = parseMajorVersion(version);
         const octokit = getOctokit(token);
 
+        console.log(octokit);
+
         // @ts-ignore TODO: FIX?
         const res = await octokit.git.createTag({
             ...context.repo,
