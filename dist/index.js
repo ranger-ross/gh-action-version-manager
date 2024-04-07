@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function main() {
-    console.log('FOUND');
+    console.log('FOUND 1');
 }
 function parseMajorVersion(version) {
     var normalizedVersion = version;
