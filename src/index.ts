@@ -11,8 +11,7 @@ async function main() {
 
         console.log(octokit);
 
-        // @ts-ignore TODO: FIX?
-        const res = await octokit.git.createTag({
+        const res = await octokit.rest.git.createTag({
             ...context.repo,
             tag: `v${majorVersion}`,
             message: "Hello",
