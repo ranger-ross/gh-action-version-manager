@@ -29233,6 +29233,11 @@ async function main() {
             object: github_1.context.sha,
             type: 'commit',
         });
+        await octokit.rest.git.createRef({
+            ...github_1.context.repo,
+            ref: `refs/tags/v${majorVersion}`,
+            sha: res.data.sha
+        });
     }
     catch (error) {
         core.setFailed(error.message);
