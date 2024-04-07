@@ -29225,6 +29225,7 @@ async function main() {
         const token = core.getInput('token');
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
         const octokit = (0, github_1.getOctokit)(token);
+        console.log(octokit);
         // @ts-ignore TODO: FIX?
         const res = await octokit.git.createTag({
             ...github_1.context.repo,
