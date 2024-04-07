@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "description": "An action for automating the versioning of other GitHub Actions.",
   "scripts": {
-    "build": "tsc src/index.ts --outDir dist",
-    "init": "tsc --init",
+    "prebuild": "rm -rf dist",
+    "build": "tsc src/index.ts --outDir dist && ncc build dist/index.js -o dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ross Sullivan",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.10.1",
+    "@actions/core": "^1.10.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1",
     "typescript": "^5.4.4"
   }
 }
