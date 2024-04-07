@@ -1,7 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var core = require("@actions/core");
 function main() {
-    console.log('FOUND 1');
+    var version = core.getInput('version');
+    console.log('FOUND ' + version);
+    var majorVersion = parseMajorVersion(version);
+    console.log('FOUND MAJOR => ' + majorVersion);
 }
 function parseMajorVersion(version) {
     var normalizedVersion = version;

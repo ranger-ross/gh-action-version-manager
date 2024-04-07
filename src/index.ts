@@ -1,7 +1,14 @@
 import * as core from '@actions/core';
 
 function main() {
-    console.log('FOUND 1')
+    const version = core.getInput('version');
+
+    console.log('FOUND ' + version)
+
+    const majorVersion = parseMajorVersion(version);
+
+    console.log('FOUND MAJOR => ' + majorVersion)
+
 }
 
 function parseMajorVersion(version: string): number {
