@@ -29226,8 +29226,7 @@ async function main() {
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
         const octokit = (0, github_1.getOctokit)(token);
         console.log(octokit);
-        // @ts-ignore TODO: FIX?
-        const res = await octokit.git.createTag({
+        const res = await octokit.rest.git.createTag({
             ...github_1.context.repo,
             tag: `v${majorVersion}`,
             message: "Hello",
