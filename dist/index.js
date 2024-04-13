@@ -29234,7 +29234,7 @@ async function main() {
             object: github_1.context.sha,
             type: 'commit',
         });
-        console.log('createTag() completed');
+        console.log('createTag() completed', res);
         // await octokit.rest.git.createRef({
         //     ...context.repo,
         //     ref: `refs/tags/v${majorVersion}`,

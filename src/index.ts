@@ -21,7 +21,7 @@ async function main() {
             type: 'commit',
         });
 
-        console.log('createTag() completed')
+        console.log('createTag() completed', res)
 
         // await octokit.rest.git.createRef({
         //     ...context.repo,
