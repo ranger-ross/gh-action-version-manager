@@ -4,7 +4,7 @@
 
 An action for automating the versioning of other GitHub Actions.
 
-For more infomration on GitHub Action versioning see the [offical documentation](https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions)
+For more information on GitHub Action versioning see the [offical documentation](https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions)
 
 ## Usage
 
