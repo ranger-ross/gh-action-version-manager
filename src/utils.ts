@@ -1,3 +1,7 @@
+export function isMajorVersion(version: string) {
+    // Check if the string starts with "v" and is followed by a number
+    return /^v?\d+$/.test(version);
+}
 
 export function parseMajorVersion(version: string): number {
     let normalizedVersion = version

@@ -29224,28 +29224,33 @@ async function main() {
     try {
         const version = core.getInput('version');
         const token = core.getInput('token');
+        if ((0, utils_1.isMajorVersion)(version)) {
+            console.warn(`${version} is already a major version. Skipping`);
+            return;
+        }
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
         const octokit = (0, github_1.getOctokit)(token);
-        const commitSha = core.getInput('commit_sha');
-        console.log('STARTING', { commitSha, contextSha: github_1.context.sha });
-        const res = await octokit.rest.git.createTag({
+        const tagResponse = await octokit.rest.git.getRef({
+            ...github_1.context.repo,
+            ref: `tags/${version}`
+        });
+        console.log(`${tagResponse.data.object.sha}`);
+        const createTagResponse = await octokit.rest.git.createTag({
             ...github_1.context.repo,
             ref: `tags/v${majorVersion}`,
             tag: `v${majorVersion}`,
             message: "Hello",
-            object: github_1.context.sha,
+            object: tagResponse.data.object.sha,
             type: 'commit',
         });
-        console.log('createTag() completed', res);
-        const r = await octokit.rest.git.createRef({
+        const refResponse = await octokit.rest.git.createRef({
             ...github_1.context.repo,
             ref: `refs/tags/v${majorVersion}`,
-            sha: res.data.sha
+            sha: createTagResponse.data.sha
         });
-        console.log('createRef() completed', r);
     }
     catch (error) {
-        console.error(error);
+        console.debug(error);
         core.setFailed(error.message);
     }
 }
@@ -29260,7 +29265,12 @@ main();
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.parseMajorVersion = void 0;
+exports.parseMajorVersion = exports.isMajorVersion = void 0;
+function isMajorVersion(version) {
+    // Check if the string starts with "v" and is followed by a number
+    return /^v?\d+$/.test(version);
+}
+exports.isMajorVersion = isMajorVersion;
 function parseMajorVersion(version) {
     let normalizedVersion = version;
     if (version[0] === 'v') {
