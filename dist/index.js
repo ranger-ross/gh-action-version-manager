@@ -29230,11 +29230,12 @@ async function main() {
         }
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
         const octokit = (0, github_1.getOctokit)(token);
+        console.log(`Fetching tag ${version}`);
         const tagResponse = await octokit.rest.git.getRef({
             ...github_1.context.repo,
             ref: `tags/${version}`
         });
-        console.log(`${tagResponse.data.object.sha}`);
+        console.log(`Creating annotated tag ${majorVersion}`);
         const createTagResponse = await octokit.rest.git.createTag({
             ...github_1.context.repo,
             ref: `tags/v${majorVersion}`,
@@ -29243,11 +29244,13 @@ async function main() {
             object: tagResponse.data.object.sha,
             type: 'commit',
         });
+        console.log(`Creating Git ref with commit sha ${createTagResponse.data.sha}`);
         const refResponse = await octokit.rest.git.createRef({
             ...github_1.context.repo,
             ref: `refs/tags/v${majorVersion}`,
             sha: createTagResponse.data.sha
         });
+        console.log(`Success! Created new tag v${majorVersion} with commit sha ${refResponse.data.object.sha}`);
     }
     catch (error) {
         console.debug(error);
