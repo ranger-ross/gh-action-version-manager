@@ -8,6 +8,9 @@ async function main() {
         const token = core.getInput('token');
         const majorVersion = parseMajorVersion(version);
         const octokit = getOctokit(token);
+        const commitSha = core.getInput('commit_sha');
+
+        console.log({commitSha, contextSha: context.sha})
 
 
         console.log('STARTING')

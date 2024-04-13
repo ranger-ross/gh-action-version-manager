@@ -29225,6 +29225,8 @@ async function main() {
         const token = core.getInput('token');
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
         const octokit = (0, github_1.getOctokit)(token);
+        const commitSha = core.getInput('commit_sha');
+        console.log({ commitSha, contextSha: github_1.context.sha });
         console.log('STARTING');
         const res = await octokit.rest.git.createTag({
             ...github_1.context.repo,
