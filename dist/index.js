@@ -29236,22 +29236,39 @@ async function main() {
             ...github_1.context.repo,
             ref: `tags/${version}`
         });
-        console.log(`Creating annotated tag ${majorVersionTagName}`);
-        const createTagResponse = await octokit.rest.git.createTag({
-            ...github_1.context.repo,
-            ref: `tags/${majorVersionTagName}`,
-            tag: majorVersionTagName,
-            message: "Hello",
-            object: tagResponse.data.object.sha,
-            type: 'commit',
-        });
-        console.log(`Creating Git ref with commit sha ${createTagResponse.data.sha}`);
-        const refResponse = await octokit.rest.git.createRef({
-            ...github_1.context.repo,
-            ref: `refs/tags/v${majorVersion}`,
-            sha: createTagResponse.data.sha
-        });
-        console.log(`Success! Created new tag ${majorVersionTagName} with commit sha ${refResponse.data.object.sha}`);
+        let isUpdate = false;
+        try {
+            console.log(`Fetching major version tag ${majorVersionTagName}`);
+            const tagResponse = await octokit.rest.git.getRef({
+                ...github_1.context.repo,
+                ref: `tags/${majorVersionTagName}`
+            });
+            isUpdate = tagResponse.status == 200;
+        }
+        catch (e) {
+            if (e.status == 422) {
+                console.log(`Major version tag ${majorVersionTagName} already exists`);
+            }
+        }
+        if (isUpdate) {
+            console.log(`Updating Git ref with commit sha ${tagResponse.data.object.sha}`);
+            const refResponse = await octokit.rest.git.updateRef({
+                ...github_1.context.repo,
+                ref: `tags/${majorVersionTagName}`,
+                sha: tagResponse.data.object.sha,
+                force: true
+            });
+            console.log(`Success! Updated new tag ${majorVersionTagName} with commit sha ${refResponse.data.object.sha}`);
+        }
+        else {
+            console.log(`Creating Git ref with commit sha ${tagResponse.data.object.sha}`);
+            const refResponse = await octokit.rest.git.createRef({
+                ...github_1.context.repo,
+                ref: `refs/tags/${majorVersionTagName}`,
+                sha: tagResponse.data.object.sha
+            });
+            console.log(`Success! Created new tag ${majorVersionTagName} with commit sha ${refResponse.data.object.sha}`);
+        }
     }
     catch (error) {
         console.debug(error);
