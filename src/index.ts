@@ -10,10 +10,7 @@ async function main() {
         const octokit = getOctokit(token);
         const commitSha = core.getInput('commit_sha');
 
-        console.log({commitSha, contextSha: context.sha})
-
-
-        console.log('STARTING')
+        console.log('STARTING', {commitSha, contextSha: context.sha})
 
         const res = await octokit.rest.git.createTag({
             ...context.repo,
@@ -28,7 +25,7 @@ async function main() {
 
         await octokit.rest.git.createRef({
             ...context.repo,
-            ref: `refs/tags/v${majorVersion}`,
+            ref: `tags/v${majorVersion}`,
             sha: res.data.sha
         });
 
