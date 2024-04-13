@@ -29235,12 +29235,12 @@ async function main() {
             type: 'commit',
         });
         console.log('createTag() completed');
-        await octokit.rest.git.createRef({
-            ...github_1.context.repo,
-            ref: `refs/tags/v${majorVersion}`,
-            sha: res.data.sha
-        });
-        console.log('createRef() completed');
+        // await octokit.rest.git.createRef({
+        //     ...context.repo,
+        //     ref: `refs/tags/v${majorVersion}`,
+        //     sha: res.data.sha
+        // });
+        // console.log('createRef() completed')
     }
     catch (error) {
         core.setFailed(error.message);
