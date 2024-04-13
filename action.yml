@@ -1,9 +1,6 @@
 name: 'GitHub Action Version Manager'
 description: 'An action for automating the versioning of other GitHub Actions.'
 inputs:
-  repository:
-    description: 'Repository name with owner. For example, actions/checkout'
-    default: ${{ github.repository }}
   token:
     description: >
       Personal access token (PAT) used to fetch the repository. The PAT is configured
@@ -17,7 +14,9 @@ inputs:
 
       [Learn more about creating and using encrypted secrets](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets)
     default: ${{ github.token }}
+  version:
+    description: The original tag version
+    required: true
 runs:
   using: node20
   main: dist/index.js
-  post: dist/index.js
