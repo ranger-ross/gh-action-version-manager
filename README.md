@@ -4,6 +4,8 @@
 
 An action for automating the versioning of other GitHub Actions.
 
+This action will update a "major version tag" (ie. `v1`) when a semver tag (ie. `v1.1.0`) is updated.
+
 For more information on GitHub Action versioning see the [offical documentation](https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions)
 
 ## Usage
