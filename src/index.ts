@@ -26,14 +26,13 @@ async function main() {
 
         console.log('createTag() completed', res)
 
-        // await octokit.rest.git.createRef({
-        //     ...context.repo,
-        //     ref: `refs/tags/v${majorVersion}`,
-        //     sha: res.data.sha
-        // });
+        await octokit.rest.git.createRef({
+            ...context.repo,
+            ref: `refs/tags/v${majorVersion}`,
+            sha: res.data.sha
+        });
 
-
-        // console.log('createRef() completed')
+        console.log('createRef() completed')
 
     } catch (error: any) {
         core.setFailed(error.message);
