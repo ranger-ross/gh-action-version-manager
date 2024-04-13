@@ -29225,6 +29225,7 @@ async function main() {
         const token = core.getInput('token');
         const majorVersion = (0, utils_1.parseMajorVersion)(version);
         const octokit = (0, github_1.getOctokit)(token);
+        console.log('STARTING');
         const res = await octokit.rest.git.createTag({
             ...github_1.context.repo,
             ref: `refs/tags/v${majorVersion}`,
@@ -29233,11 +29234,13 @@ async function main() {
             object: github_1.context.sha,
             type: 'commit',
         });
+        console.log('createTag() completed');
         await octokit.rest.git.createRef({
             ...github_1.context.repo,
             ref: `refs/tags/v${majorVersion}`,
             sha: res.data.sha
         });
+        console.log('createRef() completed');
     }
     catch (error) {
         core.setFailed(error.message);
