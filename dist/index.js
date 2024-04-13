@@ -29263,8 +29263,9 @@ async function main() {
             console.log(`Updating Git ref with commit sha ${createTagResponse.data.sha}`);
             const refResponse = await octokit.rest.git.updateRef({
                 ...github_1.context.repo,
-                ref: `refs/tags/v${majorVersion}`,
-                sha: createTagResponse.data.sha
+                ref: `refs/tags/${majorVersionTagName}`,
+                sha: createTagResponse.data.sha,
+                force: true
             });
             console.log(`Success! Updated new tag ${majorVersionTagName} with commit sha ${refResponse.data.object.sha}`);
         }
@@ -29272,7 +29273,7 @@ async function main() {
             console.log(`Creating Git ref with commit sha ${createTagResponse.data.sha}`);
             const refResponse = await octokit.rest.git.createRef({
                 ...github_1.context.repo,
-                ref: `refs/tags/v${majorVersion}`,
+                ref: `refs/tags/${majorVersionTagName}`,
                 sha: createTagResponse.data.sha
             });
             console.log(`Success! Created new tag ${majorVersionTagName} with commit sha ${refResponse.data.object.sha}`);
