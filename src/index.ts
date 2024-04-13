@@ -32,6 +32,8 @@ async function main() {
         console.log('createRef() completed')
 
     } catch (error: any) {
+        console.error(error);
+
         core.setFailed(error.message);
     }
 }
