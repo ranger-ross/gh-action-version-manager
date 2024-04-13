@@ -29237,12 +29237,12 @@ async function main() {
             type: 'commit',
         });
         console.log('createTag() completed', res);
-        await octokit.rest.git.createRef({
+        const r = await octokit.rest.git.createRef({
             ...github_1.context.repo,
             ref: `refs/tags/v${majorVersion}`,
             sha: res.data.sha
         });
-        console.log('createRef() completed');
+        console.log('createRef() completed', r);
     }
     catch (error) {
         console.error(error);
