@@ -1,5 +1,7 @@
 # GitHub Action Version Manager
 
+[![Run Tests](https://github.com/ranger-ross/gh-action-version-manager/actions/workflows/check.yaml/badge.svg)](https://github.com/ranger-ross/gh-action-version-manager/actions/workflows/check.yaml)
+
 An action for automating the versioning of other GitHub Actions.
 
 ## Usage
