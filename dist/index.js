@@ -29263,7 +29263,7 @@ async function main() {
             console.log(`Updating Git ref with commit sha ${createTagResponse.data.sha}`);
             const refResponse = await octokit.rest.git.updateRef({
                 ...github_1.context.repo,
-                ref: `refs/tags/${majorVersionTagName}`,
+                ref: `tags/${majorVersionTagName}`,
                 sha: createTagResponse.data.sha,
                 force: true
             });
