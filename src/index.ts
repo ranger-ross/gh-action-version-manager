@@ -14,7 +14,7 @@ async function main() {
 
         const res = await octokit.rest.git.createTag({
             ...context.repo,
-            ref: `refs/tags/v${majorVersion}`,
+            ref: `tags/v${majorVersion}`,
             tag: `v${majorVersion}`,
             message: "Hello",
             object: context.sha,
@@ -25,7 +25,7 @@ async function main() {
 
         await octokit.rest.git.createRef({
             ...context.repo,
-            ref: `tags/v${majorVersion}`,
+            ref: `refs/tags/v${majorVersion}`,
             sha: res.data.sha
         });
 
