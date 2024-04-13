@@ -29250,15 +29250,6 @@ async function main() {
                 console.log(`Major version tag ${majorVersionTagName} already exists`);
             }
         }
-        // console.log(`Creating annotated tag ${majorVersionTagName}`);
-        // const createTagResponse = await octokit.rest.git.createTag({
-        //     ...context.repo,
-        //     ref: `tags/${majorVersionTagName}`,
-        //     tag: majorVersionTagName,
-        //     message: "Hello",
-        //     object: tagResponse.data.object.sha,
-        //     type: 'commit',
-        // });
         if (isUpdate) {
             console.log(`Updating Git ref with commit sha ${tagResponse.data.object.sha}`);
             const refResponse = await octokit.rest.git.updateRef({
