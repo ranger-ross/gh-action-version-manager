@@ -21,6 +21,6 @@
     "@vercel/ncc": "^0.38.1",
     "pre-commit": "^1.2.2",
     "typescript": "^5.4.4",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.0"
   }
 }
